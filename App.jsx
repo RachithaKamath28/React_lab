@@ -1,31 +1,70 @@
-import React from 'react';
-import {Routes, Route, NavLink} from 'react-router-dom';
-import Home from './Home.jsx';
-import Contact from './Contact.jsx';
-import About from './About.jsx';
-function App(){
-  const linkStyle=({isActive})=>({
-    margin:'0 10px',
-    textDecoration:'none',
-    color:isActive?'blue':'black',
-    fontWeight:isActive?'bold':'normal'
-  });
+import React, { useState } from 'react';
+import './index.css';
+
+export default function App() {
+  const [tasks, setTasks] = useState([]);
+  const [filter, setF] = useState("all");
+  const [f, setForm] = useState({ name: "", date: "", desc: "" });
+
+  const add = (e) => {
+    e.preventDefault();
+    if (f.name && f.date) {
+      setTasks([...tasks, { ...f, done: false }]);
+      setForm({ name: "", date: "", desc: "" });
+    }
+  };
+
+  const toggle = (i) => {
+    setTasks(tasks.map((t, j) =>
+      j === i ? { ...t, done: !t.done } : t
+    ));
+  };
+
   return (
-    <div>
-    <nav style={{
-      display:'flex',
-      justifyContent:'center',
-      gap:'20px'
-    }}>
-      <NavLink to='/' style={linkStyle} end> Home</NavLink>
-      <NavLink to='/About' style={linkStyle} end> About</NavLink>
-      <NavLink to='/Contact' style={linkStyle} end> Contact</NavLink>
-      </nav>
-      <hr/><Routes><Route path="/" element={<Home/>}/>
-      <Route path="/about" element={<About/>}/>
-      <Route path="/contact" element={<Contact/>}/>
-      </Routes>
+    <div className="app">
+      <h1>Reminder App</h1>
+
+      <form onSubmit={add}>
+        {["name", "date", "desc"].map((k) => (
+          <input
+            key={k}
+            type={k === "date" ? "date" : "text"}
+            placeholder={k}
+            value={f[k]}
+            onChange={(e) =>
+              setForm({ ...f, [k]: e.target.value })
+            }
+          />
+        ))}
+        <button>Add</button>
+      </form>
+
+      <div className="filters">
+        {["all", "done", "notdone"].map((v) => (
+          <button key={v} onClick={() => setF(v)}>
+            {v}
+          </button>
+        ))}
+      </div>
+
+      <ul>
+        {tasks
+          .filter((t) =>
+            filter === "all" ||
+            (filter === "done" && t.done) ||
+            (filter === "notdone" && !t.done)
+          )
+          .map((t, i) => (
+            <li
+              key={i}
+              onClick={() => toggle(i)}
+              className={t.done ? "done" : ""}
+            >
+              <b>{t.name}</b> - {t.date}
+              {t.desc && ` | ${t.desc}`}
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
-export default App;
