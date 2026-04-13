@@ -1,0 +1,113 @@
+/* General page styling */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(to right, #f0f8ff, #e6ffe6);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Navigation bar */
+nav {
+  background-color: #004080;
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 20px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffcc00;
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  color: #004080;
+  margin-top: 20px;
+}
+
+/* Paragraphs */
+p {
+  width: 80%;
+  margin: 15px auto;
+  line-height: 1.6;
+  font-size: 1.1em;
+}
+
+/* Lists */
+ul {
+  list-style-type: square;
+  padding-left: 40px;
+}
+
+ul li {
+  margin: 10px 0;
+  color: #006600;
+  font-weight: 500;
+}
+
+/* Location or highlight box */
+.location, .highlight-box {
+  background-color: #fff3cd;
+  padding: 15px;
+  margin: 20px auto;
+  width: 80%;
+  border: 2px solid #ffcc00;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+/* Contact form */
+form {
+  width: 60%;
+  margin: 20px auto;
+  background: #e6f7ff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #004080;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #004080;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #ffcc00;
+  color: #004080;
+}
+
+/* Footer */
+footer {
+  background-color: #004080;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  margin-top: 30px;
+}
