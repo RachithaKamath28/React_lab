@@ -1,2 +1,0 @@
-import DataFetcher from "./App";
-
